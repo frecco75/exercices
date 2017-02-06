@@ -16,7 +16,7 @@ public class Sorter {
             for(int i=1; i<A.length-1; ++i) {
                 for(int j=0; j<A.length-i; ++j) {
                     if(A[j] > A[j+1]) {
-                        exchange(A, j, j+1);
+                        swap(A, j, j+1);
                     }
                 }
             }
@@ -41,7 +41,7 @@ public class Sorter {
                         min_indice = j;
                     }
                 }
-                exchange(A, i, min_indice);
+                swap(A, i, min_indice);
             }
         }
     }
@@ -144,7 +144,7 @@ public class Sorter {
     // Private methods
     //-----------------------------------------------------------
 
-    private void exchange(final int[] A, final int i, final int j) {
+    private void swap(final int[] A, final int i, final int j) {
         int temp = A[i];
         A[i] = A[j];
         A[j] = temp;
