@@ -25,6 +25,10 @@ public class FindFileLocation {
         System.out.println("Duration: " + (System.currentTimeMillis() - start) + "ms");
     }
 
+    
+    // Algo 1 (récursif)
+    //-----------------------------------------------
+    
     public static String locateRecursive(final String directoryName, final String fileName) {
         String location = null;
         if(directoryName != null && fileName != null) {
@@ -48,6 +52,10 @@ public class FindFileLocation {
         return location;
     }
 
+    
+    // Algo 1 bis (récursif) - même algo mais avec code plus simple
+    //-----------------------------------------------
+    
     public static String searchFile(final File file, final String search) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
@@ -64,6 +72,11 @@ public class FindFileLocation {
         }
         return null;
     }
+    
+    
+    // Algo 2 optimisé - un fichier a peu de chance de se trouver tout en bas dans l'arborescence
+    // Il est ainsi plus judicieux d'explorer l'arborescence par niveau (profondeur) et non de façon récursive
+    //-----------------------------------------------
 
     public static String locate(final String directoryName, final String fileName) {
         String location = null;
