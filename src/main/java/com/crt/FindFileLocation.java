@@ -18,6 +18,11 @@ public class FindFileLocation {
         location = locate(args[0], args[1]);
         System.out.println(location);
         System.out.println("Duration: " + (System.currentTimeMillis() - start) + "ms");
+
+        start = System.currentTimeMillis();
+        location = searchFile(new File(args[0]), args[1]);
+        System.out.println(location);
+        System.out.println("Duration: " + (System.currentTimeMillis() - start) + "ms");
     }
 
     public static String locateRecursive(final String directoryName, final String fileName) {
@@ -41,6 +46,23 @@ public class FindFileLocation {
             }
         }
         return location;
+    }
+
+    public static String searchFile(final File file, final String search) {
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            for (File f : files) {
+                String path = searchFile(f, search);
+                if(path != null) {
+                    return path;
+                }
+            }
+        } else {
+            if (search.equals(file.getName())) {
+                return file.getAbsolutePath();
+            }
+        }
+        return null;
     }
 
     public static String locate(final String directoryName, final String fileName) {
